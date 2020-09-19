@@ -1,0 +1,98 @@
+.flex-container {
+  display: flex; /* there's also and option for inline-flex */
+  /* automatically gives the flex context to all it's children */
+  /* !! CSS columns have no effect while in a flex context */
+
+  flex-direction: column-reverse; /* establishes the main axis, thus defining the direction items are placed in the flex container */
+  /* Other possible values:
+  - row
+  - row-reverse
+  - column */
+
+  /* !! By default, all flex items will try to fit onto one line. Can be changed as needed using flex-wrap */
+  flex-wrap: wrap-reverse; /* flex items will wrap onto multiple lines from bottom to top */
+  /* Other possible values:
+  - nowrap = default behavior
+  - wrap = wrap onto multiple lines, from top to bottom */
+
+  /* !!! flex-flow = flex-drection + flex-wrap */
+  justify-content: space-evenly; /* defines the alignment along the main axis */
+  /* Items are distributed so that the spacing between any two items (and the space to the edges) is equal */
+  /* Other possible values:
+  - flex-start = default, items are packed towards the start of the flex direction
+  - flex-end = items are packed toward the end of the flex direction
+  - start = items are packed towards the start of writing-mode direction
+  - end = items are packed towards the end of the writing-mode direction
+  - left = items are packed towards the left edge of the container (can behave like start if it doesn't make sense with the flex direction)
+  - right = items are packed towards the right edge of the container (can behave like end, same as above )
+  - center = items are centered along the line
+  - space-between = items are evenly distributed in the line
+  - space-around = items are in the line with equal space between them
+  -  */
+
+  align-items: center; /* defines how flex items are laid out along the cross axis */
+  /* Other possible values:
+  - stretch = default, stetch to fill the container
+  - flex-start / start / self-start = placed at the start of the cross axis, minor differences based on flex-direction & writing-mode
+  - flex-end / end / slef-end = placed at the edn of the cross axis,  minor differences based on flex-direction & writing-mode
+  - center = items are centered in the cross-axis 
+  - baseline = items are aligned such as their baseline align*/
+
+  /* allign-content ; has no effect when there's only one row/column */
+}
+
+.custom-item {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 50px;
+}
+
+/* --- EXAMPLE 1 --- */
+.container-example1 {
+  display: flex;
+  height: 250px; /* value doesn't matter */
+}
+
+.child-example1 {
+  height: 50px;
+  /*  width set by the text inside */
+  margin: auto;
+  /*  works because margin set to auto in flex containers absorbs extra spaces */
+}
+
+/* --- EXAMPLE 2 --- */
+.nav-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+
+  list-style: none;
+  margin: 0;
+  background-color: aquamarine;
+}
+
+.nav-container a {
+  text-decoration: none;
+  display: block;
+  padding: 2em;
+}
+
+/* on medium size devices the elements are centered in the menu */
+@media all and (max-width: 800px) {
+  .nav-container {
+    justify-content: space-around;
+  }
+}
+
+/* on small screen devices the elements are placed on top of one another */
+@media all and (max-width: 600px) {
+  .nav-container {
+    flex-flow: column wrap;
+  }
+  .nav-container a {
+    text-align: center; 
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255,0.3); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+  }
+}
